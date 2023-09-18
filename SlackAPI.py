@@ -27,9 +27,21 @@ class SlackAPI:
         message_ts = message["ts"]
         return message_ts
     
+    def post_message(self, channel_id, text):
+        """
+        ### 슬랙 채널 내 메세지 포스팅
+        - parameter : `channel_id`, `text`
+        - return : `result`
+        """
+        result = self.client.chat_postMessage(
+            channel = channel_id,
+            text = text,
+        )
+        return result
+    
     def post_comment(self, channel_id, message_ts, text):
         """
-        ### 슬랙 체널 내 메세지의 Thread에 댓글 달기
+        ### 슬랙 채널 내 메세지의 Thread에 댓글 달기
         - parameter : `channel_id`, `message_ts`, `text`
         - return : `result`
         """
