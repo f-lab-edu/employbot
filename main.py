@@ -1,7 +1,7 @@
 import os
 
-from fastapi import FastAPI, Body
-from pydantic.main import BaseModel
+from fastapi import FastAPI
+# from pydantic.main import BaseModel
 import uvicorn
 
 from SlackAPI import *
@@ -10,10 +10,16 @@ import slack_tokens
 app = FastAPI()
 
 
-class SlackModel(BaseModel):
-    token: str
-    challenge: str
-    type: str
+# class SlackModel(BaseModel):
+#     token: str
+#     challenge: str
+#     type: str
+#
+# @app.post("/")
+# async def post_message(request_body: SlackModel = Body(...)):
+#     response = {"challenge": request_body.challenge}
+#     print(response)
+#     return response
 
 @app.post("/post")
 async def post_message():
@@ -36,12 +42,6 @@ async def search_job():
     result = slack_client.post_message(slack_tokens.CHANNEL_ID, text=search_text)
 
     return result
-
-@app.post("/")
-async def post_message(request_body: SlackModel = Body(...)):
-    response = {"challenge": request_body.challenge}
-    print(response)
-    return response
 
 if __name__ == "__main__":
     uvicorn.run("main:app", reload=True)
