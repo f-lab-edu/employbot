@@ -1,19 +1,21 @@
 import os
 
-from fastapi import FastAPI
-from slack_bolt.async_app import AsyncApp
-from slack_bolt.adapter.socket_mode.aiohttp import AsyncSocketModeHandler
+from fastapi import FastAPI, Body
+from pydantic.main import BaseModel
 import uvicorn
 
 from SlackAPI import *
 import slack_tokens
 
 app = FastAPI()
-slack_app = AsyncApp(token=slack_tokens.SLACK_APP_TOKEN)
-socket_handler = AsyncSocketModeHandler(slack_app, os.environ["SLACK_APP_TOKEN"])
 
 
-@app.post("/")
+class SlackModel(BaseModel):
+    token: str
+    challenge: str
+    type: str
+
+@app.post("/post")
 async def post_message():
     query = "테스트입니다."
     text = "네 확인했습니다."
@@ -23,7 +25,7 @@ async def post_message():
     return result
 
 
-@slack_app.command("searchapp")
+@app.post("/searchjob")
 async def search_job():
     slack_client = SlackAPI(token=slack_tokens.SLACK_APP_TOKEN)
     search_text = """
@@ -33,7 +35,13 @@ async def search_job():
     """
     result = slack_client.post_message(slack_tokens.CHANNEL_ID, text=search_text)
 
-    return "result"
+    return result
+
+@app.post("/")
+async def post_message(request_body: SlackModel = Body(...)):
+    response = {"challenge": request_body.challenge}
+    print(response)
+    return response
 
 if __name__ == "__main__":
     uvicorn.run("main:app", reload=True)
