@@ -162,3 +162,5 @@ cython_debug/
 slack_tokens.py
 
 /pyfa
+
+/.DS_Store
