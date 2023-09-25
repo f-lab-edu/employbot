@@ -32,12 +32,12 @@ async def search_job():
 				"action_id": "plain_text_input-action",
 				"placeholder": {
 					"type": "plain_text",
-					"text": "파이썬 신입 개발자"
+					"text": "파이썬 신입"
 				}
 			},
 			"label": {
 				"type": "plain_text",
-				"text": "원하시는 검색어를 입력하세요.",
+				"text": "기업명, 공고명등 검색해보세요.",
 				"emoji": True
 			}
 		}
@@ -56,8 +56,9 @@ async def get_job(request: Request):
         result = slack_client.post_message(channel_id=slack_tokens.CHANNEL_ID, text="아무것도 입력하지 않았습니다.")
         return
     else:
+        query = query.replace(" ", "%20")
         texts = f"""
-		💡 {query} 관련 직무를 찾아보세요
+		💡 관련 직무를 찾아보세요.
 		잡코리아 : https://www.jobkorea.co.kr/OnePick/JobList?Keyword={query}
 		원티드 : https://www.wanted.co.kr/search?query={query}
 		사람인 : https://www.saramin.co.kr/zf_user/search?searchword={query}
