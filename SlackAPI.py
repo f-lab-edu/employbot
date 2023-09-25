@@ -27,16 +27,23 @@ class SlackAPI:
         message_ts = message["ts"]
         return message_ts
     
-    def post_message(self, channel_id, text):
+    def post_message(self, channel_id, text, blocks = None):
         """
         ### 슬랙 채널 내 메세지 포스팅
         - parameter : `channel_id`, `text`
         - return : `result`
         """
-        result = self.client.chat_postMessage(
-            channel = channel_id,
-            text = text,
-        )
+        if blocks == None:
+            result = self.client.chat_postMessage(
+                channel = channel_id,
+                text = text
+            )
+        else:
+            result = self.client.chat_postMessage(
+                channel = channel_id,
+                text = text,
+                blocks = blocks
+            )
         return result
     
     def post_comment(self, channel_id, message_ts, text):
