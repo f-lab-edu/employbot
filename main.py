@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Body, APIRouter
+from fastapi import FastAPI, Body
 from routers import total_search
 import uvicorn
 
@@ -15,10 +15,6 @@ app.include_router(total_search.router)
 #     response = {"challenge": request_body.challenge}
 #     print(response)
 #     return response
-
-
-
-
 
 if __name__ == "__main__":
     uvicorn.run("main:app", reload=True)
