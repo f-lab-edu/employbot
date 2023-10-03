@@ -49,12 +49,8 @@ class SlackAPI:
         - parameter : `channel_id`, `message_ts`, `text`
         - return : `result`
         """
-        result = self.client.chat_postMessage(
-            channel = channel_id,
-            text = text,
-            thread_ts = message_ts
-        )
-        return result
+        args = {"channel":channel_id, "text":text, "thread_ts":message_ts}
+        return self.client.chat_postMessage(**args)
 
 
 
