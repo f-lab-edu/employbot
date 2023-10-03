@@ -1,5 +1,12 @@
 from slack_sdk import WebClient
-import slack_tokens
+from dotenv import load_dotenv
+import os 
+
+# load .env
+load_dotenv()
+CHANNEL_ID = os.environ.get('CHANNEL_ID')
+SLACK_APP_TOKEN = os.environ.get('SLACK_APP_TOKEN')
+CHANNEL_ID = os.environ.get('CHANNEL_ID')
 
 class SlackAPI:
     """
@@ -18,7 +25,7 @@ class SlackAPI:
         - parameter : `channel_id`, `query`
         - return : `message_ts`
         """
-        result = self.client.conversations_history(channel=channel_id)
+        result = self.client.conversations_history(channel=CHANNEL_ID)
         # 채널 내 메세지 정보 리스트
         messages = result.data['messages']
         # 채널 내 메세지가 query와 일치하는 메세지 딕셔너리 쿼리
@@ -33,18 +40,8 @@ class SlackAPI:
         - parameter : `channel_id`, `text`
         - return : `result`
         """
-        if blocks == None:
-            result = self.client.chat_postMessage(
-                channel = channel_id,
-                text = text
-            )
-        else:
-            result = self.client.chat_postMessage(
-                channel = channel_id,
-                text = text,
-                blocks = blocks
-            )
-        return result
+        args = {"channel": channel_id, "text": text, "blocks" : blocks}
+        return self.client.chat_postMessage(**args)
     
     def post_comment(self, channel_id, message_ts, text):
         """
