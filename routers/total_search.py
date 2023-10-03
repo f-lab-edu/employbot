@@ -1,9 +1,5 @@
 from routers import *
 
-router = APIRouter(
-    prefix="/search",
-)
-
 @router.post("/total")
 async def search_job():
     slack_client = SlackAPI(token=SLACK_APP_TOKEN)
@@ -47,5 +43,72 @@ async def get_job(request: Request):
 		원티드 : https://www.wanted.co.kr/search?query={query}
 		사람인 : https://www.saramin.co.kr/zf_user/search?searchword={query}
 		"""
-        result = slack_client.post_message(channel_id=CHANNEL_ID, text=texts)
+        blocks = [
+		{
+			"type": "section",
+			"text": {
+				"type": "plain_text",
+				"emoji": True,
+				"text": "입력하신 검색어의 통합 결과를 확인하세요."
+			}
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*원티드(Wanted)*"
+			},
+			"accessory": {
+				"type": "button",
+				"text": {
+					"type": "plain_text",
+					"emoji": True,
+					"text": "Search"
+				},
+				"value": "wanted_result",
+                "url": f"https://www.wanted.co.kr/search?query={query}",
+				"action_id": "button-action"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*잡코리아(JobKorea)*"
+			},
+			"accessory": {
+				"type": "button",
+				"text": {
+					"type": "plain_text",
+					"emoji": True,
+					"text": "Search"
+				},
+                "value": "jobkorea_result",
+                "url": f"https://www.jobkorea.co.kr/OnePick/JobList?Keyword={query}",
+				"action_id": "button-action"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*사람인(Saram in)*"
+			},
+			"accessory": {
+				"type": "button",
+				"text": {
+					"type": "plain_text",
+					"emoji": True,
+					"text": "Search"
+				},
+                "value": "saramin_result",
+                "url": f"https://www.saramin.co.kr/zf_user/search?searchword={query}",
+				"action_id": "button-action"
+			}
+		}
+	]
+        result = slack_client.post_message(channel_id=CHANNEL_ID, text=texts, blocks=blocks)
         return 
