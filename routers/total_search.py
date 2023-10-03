@@ -1,7 +1,4 @@
-from fastapi import FastAPI, Body, Request, APIRouter
-import json
-
-from SlackAPI import *
+from routers import *
 
 router = APIRouter(
     prefix="/search",
