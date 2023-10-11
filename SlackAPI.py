@@ -52,6 +52,58 @@ class SlackAPI:
         args = {"channel":channel_id, "text":text, "thread_ts":message_ts}
         return self.client.chat_postMessage(**args)
 
+    def action_buttons(self, elements: list):
+        """
+        #### Menu 내 세부 블록 가져오기
+        - parameter : `elements`
+        - return : `blocks`
+        """
+        blocks = [		{
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": "🤖 안녕하세요. 취업봇입니다.",
+				"emoji": True
+			}
+		},
+		{
+			"type": "rich_text",
+			"elements": [
+				{
+					"type": "rich_text_section",
+					"elements": [
+						{
+							"type": "text",
+							"text": """
+                            여러분의 취업 성공을 위해 제작되었습니다.원하시는 메뉴를 선택해주세요.
+또한, `Slash-Command`를 이용해서 입력하실 수 있습니다.
+                            """
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "divider"
+		},
+        {
+            "type":"actions",
+            "elements": [],
+        }]
+
+        for row in elements:
+            blocks[3]['elements'].append(
+                                {
+                    "type": "button",
+                    "text": {
+                        "type": "plain_text",
+                        "text": row["text"],
+                    },
+                    "value": row["value"],
+                }
+            )
+
+        return blocks
 
 
 

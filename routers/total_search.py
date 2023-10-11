@@ -27,11 +27,23 @@ async def search_job():
 
 
 @router.post("/interactive")
-async def get_job(request: Request):
+async def post_interactive(request: Request):
     form_data = await request.form()
     payload = json.loads(form_data.get("payload"))
-    query=payload["actions"][0]['value']
+    query=payload["actions"][0]
     slack_client = SlackAPI(token=SLACK_APP_TOKEN)
+    
+    if query:
+        if query['type'] == "plain_text_input":
+            await get_job(query=query['value'])
+            return
+        if query['type'] == "button":
+            if query['value'] == "total":
+                await search_job()
+                return
+
+
+async def get_job(query):
     if query == None:
         result = slack_client.post_message(channel_id=CHANNEL_ID, text="아무것도 입력하지 않았습니다.")
         return
@@ -109,6 +121,6 @@ async def get_job(request: Request):
 				"action_id": "button-action"
 			}
 		}
-	]
+		]
         result = slack_client.post_message(channel_id=CHANNEL_ID, text=texts, blocks=blocks)
         return 
