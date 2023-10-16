@@ -10,6 +10,7 @@ async def post_interactive(request: Request):
     
     if query:
         if query['type'] == "plain_text_input":
+            await get_job(query['value'])
             return
         if query['type'] == "button":
             if query['value'] == "total":
