@@ -1,0 +1,19 @@
+[
+{
+    "dispatch_action": true,
+    "type": "input",
+    "element": {
+        "type": "plain_text_input",
+        "action_id": "total_search",
+        "placeholder": {
+            "type": "plain_text",
+            "text": "파이썬 신입"
+        }
+    },
+    "label": {
+        "type": "plain_text",
+        "text": "기업명, 공고명등 검색해보세요.",
+        "emoji": true
+    }
+}
+]
