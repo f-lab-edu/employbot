@@ -1,0 +1,63 @@
+[
+    {
+        "type": "section",
+        "text": {
+            "type": "mrkdwn",
+            "text": ":mag: 원하시는 옵션이 있을까요?"
+        }
+    },
+    {
+        "type": "divider"
+    },
+    {
+        "type": "section",
+        "block_id": "form_5",
+        "text": {
+            "type": "mrkdwn",
+            "text": "복수 선택 가능합니다."
+        },
+        "accessory": {
+            "type": "multi_static_select",
+            "placeholder": {
+                "type": "plain_text",
+                "text": "옵션을 선택해주세요.",
+                "emoji": true
+            },
+            "options": [
+                {
+                    "text": {
+                        "type": "plain_text",
+                        "text": "❌ 해당 없음",
+                        "emoji": true
+                    },
+                    "value": "0"
+                },
+                {
+                    "text": {
+                        "type": "plain_text",
+                        "text": "💷 적절한 보상",
+                        "emoji": true
+                    },
+                    "value": "3"
+                },
+                {
+                    "text": {
+                        "type": "plain_text",
+                        "text": "⏰ 유연 근무제",
+                        "emoji": true
+                    },
+                    "value": "5"
+                },
+                {
+                    "text": {
+                        "type": "plain_text",
+                        "text": "💎 단단한 회사",
+                        "emoji": true
+                    },
+                    "value": "7"
+                }
+            ],
+            "action_id": "form_5"
+        }
+    }
+]

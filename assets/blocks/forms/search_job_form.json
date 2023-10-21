@@ -1,0 +1,50 @@
+[
+    {
+        "type": "section",
+        "text": {
+            "type": "mrkdwn",
+            "text": ":mag: 자세하게 *직무* 를 검색해드립니다."
+        }
+    },
+    {
+        "type": "divider"
+    },
+    {
+        "type": "section",
+        "block_id": "form_1",
+        "text": {
+            "type": "mrkdwn",
+            "text": "원하시는 직무가 있을까요?🙂"
+        },
+        "accessory": {
+            "type": "radio_buttons",
+            "options": [
+                {
+                    "text": {
+                        "type": "plain_text",
+                        "text": "👨‍💻 개발, 데이터",
+                        "emoji": true
+                    },
+                    "value": "10031"
+                },
+                {
+                    "text": {
+                        "type": "plain_text",
+                        "text": "🎨디자인",
+                        "emoji": true
+                    },
+                    "value": "10032"
+                },
+                {
+                    "text": {
+                        "type": "plain_text",
+                        "text": "🗓️기획, 전략",
+                        "emoji": true
+                    },
+                    "value": "10026"
+                }
+            ],
+            "action_id": "form_1"
+        }
+    }
+]

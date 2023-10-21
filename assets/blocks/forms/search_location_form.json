@@ -1,0 +1,55 @@
+[
+    {
+        "type": "section",
+        "text": {
+            "type": "mrkdwn",
+            "text": ":mag: 그다음, 구직을 희망하시는 지역을 골라주세요."
+        }
+    },
+    {
+        "type": "divider"
+    },
+    {
+        "type": "section",
+        "block_id": "form_2",
+        "text": {
+            "type": "mrkdwn",
+            "text": "지역 선정"
+        },
+        "accessory": {
+            "type": "static_select",
+            "placeholder": {
+                "type": "plain_text",
+                "text": "Location",
+                "emoji": true
+            },
+            "options": [
+                {
+                    "text": {
+                        "type": "plain_text",
+                        "text": "서울",
+                        "emoji": true
+                    },
+                    "value": "I000"
+                },
+                {
+                    "text": {
+                        "type": "plain_text",
+                        "text": "경기",
+                        "emoji": true
+                    },
+                    "value": "B000"
+                },
+                {
+                    "text": {
+                        "type": "plain_text",
+                        "text": "인천",
+                        "emoji": true
+                    },
+                    "value": "K000"
+                }
+            ],
+            "action_id": "form_2"
+        }
+    }
+]

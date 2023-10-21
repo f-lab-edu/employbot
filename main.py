@@ -1,18 +1,24 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Body
+
+from pydantic.main import BaseModel
+from routers import total_search, form_search, menu
 import uvicorn
-from SlackAPI import *
-import slack_tokens
 
 app = FastAPI()
+app.include_router(total_search.router)
+app.include_router(form_search.router)
+app.include_router(menu.router)
+
+class SlackModel(BaseModel):
+    token: str
+    challenge: str
+    type: str
 
 @app.post("/")
-async def post_message():
-    query = "테스트입니다."
-    text = "네 확인했습니다."
-    slack_client = SlackAPI(token=slack_tokens.BOT_TOKEN)
-    message_ts = slack_client.get_message(slack_tokens.CHANNEL_ID, query=query)
-    result = slack_client.post_comment(slack_tokens.CHANNEL_ID, message_ts=message_ts, text=text)
-    return result
+async def post_message(request_body: SlackModel = Body(...)):
+    response = {"challenge": request_body.challenge}
+    print(response)
+    return response
 
 if __name__ == "__main__":
     uvicorn.run("main:app", reload=True)

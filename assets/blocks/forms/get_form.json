@@ -1,0 +1,31 @@
+[
+    {
+        "type": "section",
+        "text": {
+            "type": "plain_text",
+            "emoji": true,
+            "text": "입력하신 검색어의 통합 결과를 확인하세요."
+        }
+    },
+    {
+        "type": "divider"
+    },
+    {
+        "type": "section",
+        "text": {
+            "type": "mrkdwn",
+            "text": "*잡코리아*"
+        },
+        "accessory": {
+            "type": "button",
+            "text": {
+                "type": "plain_text",
+                "emoji": true,
+                "text": "Search"
+            },
+            "value": "wanted_result",
+            "url": "QUERY_URL",
+            "action_id": "button-action"
+        }
+    }
+]
