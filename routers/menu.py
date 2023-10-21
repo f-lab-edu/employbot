@@ -19,7 +19,7 @@ async def post_interactive(request: Request):
                 await search_job() 
                 return
             if query['value'] == "detail":
-                await search_form() 
+                await search_jobform() 
                 return
     
     # forms = {'job':'', 'location':'', 'career':'', 'edulevel':'', 'option':'', 'text':''}
@@ -28,29 +28,35 @@ async def post_interactive(request: Request):
             global forms
             forms = dict()
             forms['DutyCtgr'] = query['selected_option']['value']
-            await search_form_loc()
+            path = "./assets/blocks/forms/search_location_form.json"
+            await search_form(path)
             return
         if query['action_id'].split('_')[1] == '2':
             forms['Local'] = query['selected_option']['value']
-            await search_form_car()
+            path = "./assets/blocks/forms/search_career_form.json"
+            await search_form(path)
             return
         if query['action_id'].split('_')[1] == '3':
             forms['CareerType'] = query['selected_option']['value']
-            await search_form_edulevel()
+            path = "./assets/blocks/forms/search_edulevel_form.json"
+            await search_form(path)
             return
         if query['action_id'].split('_')[1] == '4':
             forms['EduLevel'] = query['selected_option']['value']
-            await search_form_filter()
+            path = "./assets/blocks/forms/search_filter_form.json"
+            await search_form(path)
             return
         if query['action_id'].split('_')[1] == '5':
             forms['Filter'] = []
             for option in query['selected_options']:
                     forms['Filter'].append(option['value'])
-            await search_form_keyword()
+            path = "./assets/blocks/forms/search_keyword_form.json"
+            await search_form(path)
             return
         if query['action_id'] == "form_search":
             forms['keyword'] = query['value']
-            await get_form(forms)
+            path = "./assets/blocks/forms/get_form.json"
+            await get_form(forms, path)
             return
 
     return

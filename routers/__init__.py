@@ -26,3 +26,13 @@ async def select_menu():
     slack_client.post_message(CHANNEL_ID, text="select_menu", blocks=slack_client.action_buttons(elements_list))
     return
 
+
+def open_json(path):
+    """
+    ## json 파일을 불러오는 함수
+    - `path` : json 파일이 있는 경로
+    - `blocks` 반환
+    """
+    with open(path, "r") as f:
+         blocks = json.loads(f.read())
+    return blocks

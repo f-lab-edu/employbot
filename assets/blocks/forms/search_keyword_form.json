@@ -1,0 +1,29 @@
+[
+    {
+        "type": "section",
+        "block_id": "form_6",
+        "text": {
+            "type": "mrkdwn",
+            "text": ":mag: 마지막으로 원하시는 추가 검색어를 입력하시면 알선 도와드리겠습니다."
+        }
+    },
+    {
+        "type": "divider"
+    },
+    {
+        "dispatch_action": true,
+        "type": "input",
+        "element": {
+            "type": "plain_text_input",
+            "action_id": "form_search"
+        },
+        "label": {
+            "type": "plain_text",
+            "text": "추가로 원하시는 검색어가 있다면 입력해주세요.",
+            "emoji": true
+        }
+    },
+    {
+        "type": "divider"
+    }
+]

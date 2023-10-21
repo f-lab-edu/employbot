@@ -1,0 +1,55 @@
+[
+    {
+        "type": "section",
+        "text": {
+            "type": "mrkdwn",
+            "text": ":mag: 신입으로 지원하시나요? 아니면 경력으로 지원하시나요?"
+        }
+    },
+    {
+        "type": "divider"
+    },
+    {
+        "type": "section",
+        "block_id": "form_3",
+        "text": {
+            "type": "mrkdwn",
+            "text": "경력 선택"
+        },
+        "accessory": {
+            "type": "static_select",
+            "placeholder": {
+                "type": "plain_text",
+                "text": "Career",
+                "emoji": true
+            },
+            "options": [
+                {
+                    "text": {
+                        "type": "plain_text",
+                        "text": "무관",
+                        "emoji": true
+                    },
+                    "value": "0"
+                },
+                {
+                    "text": {
+                        "type": "plain_text",
+                        "text": "신입",
+                        "emoji": true
+                    },
+                    "value": "1"
+                },
+                {
+                    "text": {
+                        "type": "plain_text",
+                        "text": "경력",
+                        "emoji": true
+                    },
+                    "value": "2"
+                }
+            ],
+            "action_id": "form_3"
+        }
+    }
+]

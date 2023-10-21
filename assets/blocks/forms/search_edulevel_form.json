@@ -1,0 +1,63 @@
+[
+    {
+        "type": "section",
+        "text": {
+            "type": "mrkdwn",
+            "text": ":mag: 학력을 선택해주세요."
+        }
+    },
+    {
+        "type": "divider"
+    },
+    {
+        "type": "section",
+        "block_id": "form_4",
+        "text": {
+            "type": "mrkdwn",
+            "text": "학력 선택"
+        },
+        "accessory": {
+            "type": "static_select",
+            "placeholder": {
+                "type": "plain_text",
+                "text": "Edulevel",
+                "emoji": true
+            },
+            "options": [
+                {
+                    "text": {
+                        "type": "plain_text",
+                        "text": "학력 무관",
+                        "emoji": true
+                    },
+                    "value": "0"
+                },
+                {
+                    "text": {
+                        "type": "plain_text",
+                        "text": "대학교 졸업(2,3년)",
+                        "emoji": true
+                    },
+                    "value": "4"
+                },
+                {
+                    "text": {
+                        "type": "plain_text",
+                        "text": "대학교 졸업(4년)",
+                        "emoji": true
+                    },
+                    "value": "5"
+                },
+                {
+                    "text": {
+                        "type": "plain_text",
+                        "text": "대학원 졸업(석사)",
+                        "emoji": true
+                    },
+                    "value": "6"
+                }
+            ],
+            "action_id": "form_4"
+        }
+    }
+]
