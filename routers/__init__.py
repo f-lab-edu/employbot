@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Body, APIRouter, Request
+
 import json
 import os
 
@@ -36,3 +37,4 @@ def open_json(path):
     with open(path, "r") as f:
          blocks = json.loads(f.read())
     return blocks
+
