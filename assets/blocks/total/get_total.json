@@ -63,5 +63,23 @@
         "url": "https://www.saramin.co.kr/zf_user/search?searchword=QUERY_STRING",
         "action_id": "button-action"
     }
+},
+{
+    "type": "section",
+    "text": {
+        "type": "mrkdwn",
+        "text": "*인디드(indeed)*"
+    },
+    "accessory": {
+        "type": "button",
+        "text": {
+            "type": "plain_text",
+            "emoji": true,
+            "text": "Search"
+        },
+        "value": "saramin_result",
+        "url": "https://kr.indeed.com/jobs?q=QUERY_STRING",
+        "action_id": "button-action"
+    }
 }
 ]

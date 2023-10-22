@@ -4,7 +4,6 @@ import os
 
 # load .env
 load_dotenv()
-CHANNEL_ID = os.environ.get('CHANNEL_ID')
 SLACK_APP_TOKEN = os.environ.get('SLACK_APP_TOKEN')
 CHANNEL_ID = os.environ.get('CHANNEL_ID')
 
@@ -40,8 +39,17 @@ class SlackAPI:
         - parameter : `channel_id`, `text`
         - return : `result`
         """
-        args = {"channel": channel_id, "text": text, "blocks" : blocks}
-        return self.client.chat_postMessage(**args)
+        response = self.client.conversations_list(types='mpim,im')
+        channels = response["channels"]
+        channel_id = None
+        for channel in channels:
+            if channel['user'] == 'U05RKKF3GRL':
+                channel_id = channel["id"]
+                break
+
+        if channel_id is not None:
+            args = {"channel": channel_id, "text": text, "blocks" : blocks}
+            return self.client.chat_postMessage(**args)
     
     def post_comment(self, channel_id, message_ts, text):
         """
