@@ -1,9 +1,7 @@
 from routers import *
 from routers.form_search import *
 from routers.total_search import search_job, get_job
-import os
 
-route = os.environ.get('ROUTE')
 
 @router.post("/interactive")
 async def post_interactive(request: Request):
