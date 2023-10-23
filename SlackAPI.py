@@ -39,13 +39,14 @@ class SlackAPI:
         - parameter : `channel_id`, `text`
         - return : `result`
         """
-        response = self.client.conversations_list(types='mpim,im')
+        response = self.client.conversations_list()
         channels = response["channels"]
         channel_id = None
         for channel in channels:
-            if channel['user'] == 'U05RKKF3GRL':
+            if channel['name'] == 'employbot':
                 channel_id = channel["id"]
                 break
+            
 
         if channel_id is not None:
             args = {"channel": channel_id, "text": text, "blocks" : blocks}
