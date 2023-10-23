@@ -4,6 +4,7 @@ import json
 import os
 
 from SlackAPI import *
+route = os.environ.get('ROUTE')
 
 router = APIRouter(
     prefix="/search",
