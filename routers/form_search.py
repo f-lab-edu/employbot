@@ -3,7 +3,7 @@ from routers import *
 @router.post('/form')
 async def search_jobform():
     slack_client = SlackAPI(token=SLACK_APP_TOKEN)
-    blocks = open_json("./assets/blocks/forms/search_job_form.json")
+    blocks = open_json(f"{route}/assets/blocks/forms/search_job_form.json")
     result = slack_client.post_message(channel_id=CHANNEL_ID, text="디테일검색", blocks=blocks)
     return 
 
@@ -33,6 +33,6 @@ async def get_form(forms, path):
     
     blocks = open_json(path)
     blocks[2]["accessory"]['url'] = text
-
+    
     result = slack_client.post_message(channel_id=CHANNEL_ID,text = text, blocks=blocks)
     return 

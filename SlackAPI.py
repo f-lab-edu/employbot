@@ -4,7 +4,6 @@ import os
 
 # load .env
 load_dotenv()
-CHANNEL_ID = os.environ.get('CHANNEL_ID')
 SLACK_APP_TOKEN = os.environ.get('SLACK_APP_TOKEN')
 CHANNEL_ID = os.environ.get('CHANNEL_ID')
 
@@ -40,8 +39,18 @@ class SlackAPI:
         - parameter : `channel_id`, `text`
         - return : `result`
         """
-        args = {"channel": channel_id, "text": text, "blocks" : blocks}
-        return self.client.chat_postMessage(**args)
+        response = self.client.conversations_list()
+        channels = response["channels"]
+        channel_id = None
+        for channel in channels:
+            if channel['name'] == 'employbot':
+                channel_id = channel["id"]
+                break
+            
+
+        if channel_id is not None:
+            args = {"channel": channel_id, "text": text, "blocks" : blocks}
+            return self.client.chat_postMessage(**args)
     
     def post_comment(self, channel_id, message_ts, text):
         """
@@ -76,7 +85,7 @@ class SlackAPI:
 							"type": "text",
 							"text": """
                             여러분의 취업 성공을 위해 제작되었습니다.원하시는 메뉴를 선택해주세요.
-또한, `Slash-Command`를 이용해서 입력하실 수 있습니다.
+또한, 슬래시 커맨드를 이용해서 입력하실 수 있습니다.
                             """
 						}
 					]

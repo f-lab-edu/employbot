@@ -1,8 +1,10 @@
 from fastapi import FastAPI, Body, APIRouter, Request
+
 import json
 import os
 
 from SlackAPI import *
+route = os.environ.get('ROUTE')
 
 router = APIRouter(
     prefix="/search",
@@ -36,3 +38,4 @@ def open_json(path):
     with open(path, "r") as f:
          blocks = json.loads(f.read())
     return blocks
+

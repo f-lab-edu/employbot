@@ -2,6 +2,7 @@ from routers import *
 from routers.form_search import *
 from routers.total_search import search_job, get_job
 
+
 @router.post("/interactive")
 async def post_interactive(request: Request):
     form_data = await request.form()
@@ -28,34 +29,34 @@ async def post_interactive(request: Request):
             global forms
             forms = dict()
             forms['DutyCtgr'] = query['selected_option']['value']
-            path = "./assets/blocks/forms/search_location_form.json"
+            path = f"{route}/assets/blocks/forms/search_location_form.json"
             await search_form(path)
             return
         if query['action_id'].split('_')[1] == '2':
             forms['Local'] = query['selected_option']['value']
-            path = "./assets/blocks/forms/search_career_form.json"
+            path = f"{route}/assets/blocks/forms/search_career_form.json"
             await search_form(path)
             return
         if query['action_id'].split('_')[1] == '3':
             forms['CareerType'] = query['selected_option']['value']
-            path = "./assets/blocks/forms/search_edulevel_form.json"
+            path = f"{route}/assets/blocks/forms/search_edulevel_form.json"
             await search_form(path)
             return
         if query['action_id'].split('_')[1] == '4':
             forms['EduLevel'] = query['selected_option']['value']
-            path = "./assets/blocks/forms/search_filter_form.json"
+            path = f"{route}/assets/blocks/forms/search_filter_form.json"
             await search_form(path)
             return
         if query['action_id'].split('_')[1] == '5':
             forms['Filter'] = []
             for option in query['selected_options']:
                     forms['Filter'].append(option['value'])
-            path = "./assets/blocks/forms/search_keyword_form.json"
+            path = f"{route}/assets/blocks/forms/search_keyword_form.json"
             await search_form(path)
             return
         if query['action_id'] == "form_search":
             forms['keyword'] = query['value']
-            path = "./assets/blocks/forms/get_form.json"
+            path = f"{route}/assets/blocks/forms/get_form.json"
             await get_form(forms, path)
             return
 
